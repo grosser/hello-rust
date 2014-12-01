@@ -20,3 +20,10 @@ fn main() {
     let _constraint_f = z + f;
     // TODO ^ Try commenting out these two lines
 }
+
+#[test]
+fn main_test() {
+    main();
+    let x = 2i;
+    assert!(x == 2);
+}
