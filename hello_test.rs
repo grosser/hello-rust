@@ -1,4 +1,5 @@
 extern crate hello;
+extern crate stainless;
 
 // We add the testing logic and dsl:
 use tester::*;

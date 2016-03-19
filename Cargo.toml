@@ -1,0 +1,10 @@
+[package]
+name = "hello"
+version = "0.0.1"
+authors = ["MG <MG@MG.com>"]
+
+[lib]
+path = "hello.rs"
+
+[dev-dependencies]
+stainless = "*"

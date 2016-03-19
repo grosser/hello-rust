@@ -1,29 +1,26 @@
-fn main() {
-    // Suffixed literals, their types are known at initialization
-    let x = 1u8;
-    let y = 2u;
-    let z = 3f32;
+#[cfg(test)]
 
-    // Unsuffixed literal, their types depend on how they are used
-    let i = 1;
-    let f = 1.0;
+mod tests {
+    pub use super::CanvasRenderer;
+    pub use super::Canvas;
 
-    // `size_of_val` returns the size of a variable in bytes
-    println!("size of `x` in bytes: {}", std::mem::size_of_val(&x));
-    println!("size of `y` in bytes: {}", std::mem::size_of_val(&y));
-    println!("size of `z` in bytes: {}", std::mem::size_of_val(&z));
-    println!("size of `i` in bytes: {}", std::mem::size_of_val(&i));
-    println!("size of `f` in bytes: {}", std::mem::size_of_val(&f));
+    describe! canvas_renderer {
 
-    // Constraints (summands must have the same type) for `i` and `f`
-    let _constraint_i = x as u32 + i;
-    let _constraint_f = z + f;
-    // TODO ^ Try commenting out these two lines
+        before_each {
+            let mut canvas = Canvas {
+                width: 10,
+                height: 10,
+                array: vec!['x';10*10],
+            };
+        }
+
+        it "should fill given char at given coords" {
+            {
+                let mut renderer: CanvasRenderer = CanvasRenderer::new(&mut canvas);
+                renderer.render_point('x', 3,3);
+            }
+            assert_eq!('x', canvas.array[3*3]);
+        }
+    }
 }
 
-#[test]
-fn main_test() {
-    main();
-    let x = 2i;
-    assert!(x == 2);
-}
