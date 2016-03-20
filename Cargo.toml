@@ -3,7 +3,7 @@ name = "t"
 version = "0.0.0"
 
 [lib]
-path = "hello.rs"
+path = "src/lib.rs"
 
 [dev-dependencies]
 stainless = "*"

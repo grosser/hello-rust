@@ -7,7 +7,9 @@ mod tests {
 
 	describe! stainless {
 		it "can use HashMap" {
-			let map = HashMap::new();
+			let mut map = HashMap::new();
+			map.insert(1, 1);
+			assert!(map.contains_key(&1));
 		}
 	}
 }
