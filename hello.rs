@@ -1,26 +1,15 @@
+#![feature(plugin)]
+#![cfg_attr(test, plugin(stainless))]
+
 #[cfg(test)]
-
 mod tests {
-    pub use super::CanvasRenderer;
-    pub use super::Canvas;
+	pub use std::collections::HashMap;
 
-    describe! canvas_renderer {
-
-        before_each {
-            let mut canvas = Canvas {
-                width: 10,
-                height: 10,
-                array: vec!['x';10*10],
-            };
-        }
-
-        it "should fill given char at given coords" {
-            {
-                let mut renderer: CanvasRenderer = CanvasRenderer::new(&mut canvas);
-                renderer.render_point('x', 3,3);
-            }
-            assert_eq!('x', canvas.array[3*3]);
-        }
-    }
+	describe! stainless {
+		it "can use HashMap" {
+			let mut map = HashMap::new();
+			map.insert(1, 1);
+			assert!(map.contains_key(&1));
+		}
+	}
 }
-
