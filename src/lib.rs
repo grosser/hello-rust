@@ -29,6 +29,18 @@ impl Monster {
       _ => "cute"
     }
   }
+
+  pub fn fizzbuzz(&self) -> &str {
+    if self.health % 15 == 0 {
+      "FizzBuzz"
+    } else if self.health % 5 == 0 {
+      "Fizz"
+    } else if self.health % 3 == 0 {
+      "Buzz"
+    } else {
+      ""
+    }
+  }
 }
 
 #[cfg(test)]
@@ -62,6 +74,28 @@ mod tests {
       it "is cute with 3 eyes" {
         let monster = Monster::new(49, 3);
         assert_eq!("cute", monster.friendly());
+      }
+    }
+
+    describe! fizzbuzz {
+      it "is nothing for non-matching" {
+        let monster = Monster::new(1, 1);
+        assert_eq!("", monster.fizzbuzz())
+      }
+
+      it "is FizzBuzz for mod 15" {
+        let monster = Monster::new(30, 1);
+        assert_eq!("FizzBuzz", monster.fizzbuzz())
+      }
+
+      it "is Fizz for mod 5" {
+        let monster = Monster::new(10, 1);
+        assert_eq!("Fizz", monster.fizzbuzz())
+      }
+
+      it "is Buzz for mod 3" {
+        let monster = Monster::new(9, 1);
+        assert_eq!("Buzz", monster.fizzbuzz())
       }
     }
   }
